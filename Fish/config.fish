@@ -1,4 +1,26 @@
 function fish_prompt
-    printf '\033[1;31m%s\033[00m' (hostname)
-    printf '\e[96m ⚏ \033[1;31m{\033[00m \e[35m%s \033[1;31m}\e[96m ─╼ \033[00m ' (pwd | sed -E "s-^$HOME(\$|(/.*))-~\2-")
+	set fish_greeting
+	alias ls="lsd"
+	alias la="lsd -la"
+	set ls 'lsd -l'
+	set la 'lsd -la'
+	set_color red
+	echo -n '['
+	set_color yellow
+	echo -n $USER
+	set_color green
+	echo -n '@'
+	set_color blue
+	echo -n (hostname)
+	echo -n ' '
+	set_color purple
+	echo -n (prompt_pwd)
+	set_color red
+	echo -n ']'
+	set_color normal
+	echo -n '$ ' 
+end
+
+function fish_title
+	printf 'Terminal'
 end
